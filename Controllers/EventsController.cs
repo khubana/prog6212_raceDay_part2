@@ -7,7 +7,7 @@ using RaceDay.Api.DTOs;
 using RaceDay.Api.Models;
 namespace RaceDay.Api.Controllers;
 [ApiController,Route("api/events")] 
-public class EventsController(RaceDayContext db):ControllerBase {
+public class EventsController(RaceDayContext db):ControllerBase {//start of class
     int CurrentId=>int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
  /// <summary>Lists public events.</summary> 
  [HttpGet] 
