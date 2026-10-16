@@ -36,7 +36,7 @@ public class EnrolmentsController(RaceDayContext db):ControllerBase {//start of 
         if(e.OrganiserID!=CurrentId)return Forbid();
         return Ok(await db.EventEnrolments.Include(x=>x.Participant).Include(x=>x.Category).Where(x=>x.EventID==eventId).Select(x=>new{x.EnrolmentID,x.EventID,ParticipantName=x.Participant!.FirstName+" "+x.Participant.LastName,x.Participant.Email,x.CategoryID,CategoryName=x.Category!.CategoryName,x.Status,x.EnrolmentDate}).ToListAsync());
     }
- /// <summary>Gets an enrolment owned by the Participant or for an event owned by the Organiser.</summary> 
+ /// <summary>Gets an enrolment owned by the Participant or for an event owned by the Organiser..</summary> 
 [Authorize,HttpGet("enrolments/{id:int}")]
     public async Task<IActionResult> Get(int id){
         var en=await db.EventEnrolments.Include(x=>x.Event).Include(x=>x.Participant).Include(x=>x.Category).SingleOrDefaultAsync(x=>x.EnrolmentID==id);
