@@ -14,7 +14,7 @@ public class UsersController(RaceDayContext db):ControllerBase {//start of class
         var u=await db.Users.Include(x=>x.Role).Where(x=>x.UserID==CurrentId).Select(x=>new{x.UserID,x.FirstName,x.LastName,x.Email,x.Phone,Role=x.Role!.RoleName,x.CreatedAt}).SingleOrDefaultAsync();
         return u is null?NotFound():Ok(u);
     }
- /// <summary>Updates only the authenticated user's profile.</summary>
+ /// <summary>Updates only the authenticated user's profile..</summary>
  [HttpPut("me")]
     public async Task<IActionResult> Update(UpdateProfileRequest r)
     {
