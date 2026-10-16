@@ -19,7 +19,7 @@ public class CategoriesController(RaceDayContext db):ControllerBase {
             return NotFound();
         return Ok(await db.Categories.Where(c=>c.EventID==eventId).Select(c=>new{c.CategoryID,c.EventID,c.CategoryName,c.MaxParticipants,c.EntryFee}).ToListAsync());
     }
- /// <summary>Creates a category for an event owned by the Organiser.</summary>
+ /// <summary>Creates a category for an event owned by the Organiser..</summary>
  [Authorize(Roles="Organiser"),HttpPost("events/{eventId:int}/categories")]
         public async Task<IActionResult> Create(int eventId,CategoryRequest r){
         var e=await db.Events.FindAsync(eventId);
