@@ -35,7 +35,7 @@ public class EventsController(RaceDayContext db):ControllerBase {//start of clas
         e.EventName=r.EventName;e.EventDescription=r.EventDescription;e.EventDate=r.EventDate;e.EventLocation=r.EventLocation;e.EventStatus=r.EventStatus.ToLowerInvariant();await db.SaveChangesAsync()
             ;return Ok(e);
     }
- /// <summary>Deletes an event owned by the logged-in Organiser.</summary> 
+ /// <summary>Deletes an event owned by the logged-in Organiser..</summary> 
 [Authorize(Roles="Organiser"),HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {var e=await db.Events.FindAsync(id);
