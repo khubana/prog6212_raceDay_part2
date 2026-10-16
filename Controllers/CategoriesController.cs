@@ -9,7 +9,7 @@ namespace RaceDay.Api.Controllers;
 [ApiController,Route("api")] 
 public class CategoriesController(RaceDayContext db):ControllerBase {
     int CurrentId=>int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
- /// <summary>Lists all categories.</summary> 
+ /// <summary>Lists all categories..</summary> 
 [HttpGet("categories")] 
     public async Task<IActionResult> All()=>Ok(await db.Categories.AsNoTracking().Select(c=>new{c.CategoryID,c.EventID,c.CategoryName,c.MaxParticipants,c.EntryFee}).ToListAsync());
  /// <summary>Lists categories for a specific event.</summary> 
