@@ -8,7 +8,7 @@ namespace RaceDay.Api.Controllers;
 [ApiController,Route("api/users"),Authorize]
 public class UsersController(RaceDayContext db):ControllerBase {//start of class
     int CurrentId=>int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
- /// <summary>Returns the authenticated user's own profile.</summary>
+ /// <summary>Returns the authenticated user's own profile..</summary>
  [HttpGet("me")] public async Task<IActionResult> Me()
     {
         var u=await db.Users.Include(x=>x.Role).Where(x=>x.UserID==CurrentId).Select(x=>new{x.UserID,x.FirstName,x.LastName,x.Email,x.Phone,Role=x.Role!.RoleName,x.CreatedAt}).SingleOrDefaultAsync();
