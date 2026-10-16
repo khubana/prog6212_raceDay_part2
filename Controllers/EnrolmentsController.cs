@@ -9,7 +9,7 @@ namespace RaceDay.Api.Controllers;
 [ApiController,Route("api")] 
 public class EnrolmentsController(RaceDayContext db):ControllerBase {//start of class
     int CurrentId=>int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
- /// <summary>Enrols the logged-in Participant in an event category.</summary>
+ /// <summary>Enrols the logged-in Participant in an event category..</summary>
  [Authorize(Roles="Participant"),HttpPost("events/{eventId:int}/enrolments")] 
     public async Task<IActionResult> Enrol(int eventId,EnrolmentRequest r){
         var e=await db.Events.FindAsync(eventId);
