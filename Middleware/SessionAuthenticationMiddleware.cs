@@ -1,0 +1,3 @@
+using System.Security.Claims;
+namespace RaceDay.Api.Middleware;
+public class SessionAuthenticationMiddleware(RequestDelegate next) { public async Task InvokeAsync(HttpContext context) { var id=context.Session.GetInt32("UserID"); var role=context.Session.GetString("RoleName"); if(id.HasValue && !string.IsNullOrWhiteSpace(role)) { var claims=new[]{new Claim(ClaimTypes.NameIdentifier,id.Value.ToString()),new Claim(ClaimTypes.Role,role),new Claim(ClaimTypes.Name,context.Session.GetString("Email") ?? "")}; context.User=new ClaimsPrincipal(new ClaimsIdentity(claims,"RaceDaySession")); } await next(context); } }

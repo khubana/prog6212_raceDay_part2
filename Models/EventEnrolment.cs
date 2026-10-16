@@ -1,0 +1,2 @@
+namespace RaceDay.Api.Models;
+public class EventEnrolment { public int EnrolmentID { get; set; } public int EventID { get; set; } public int ParticipantsID { get; set; } public int CategoryID { get; set; } public DateTime EnrolmentDate { get; set; } = DateTime.UtcNow; public string Status { get; set; } = "Active"; public Event? Event { get; set; } public User? Participant { get; set; } public Category? Category { get; set; } public Result? Result { get; set; } }

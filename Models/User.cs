@@ -1,0 +1,2 @@
+namespace RaceDay.Api.Models;
+public class User { public int UserID { get; set; } public int RoleID { get; set; } public string FirstName { get; set; } = ""; public string LastName { get; set; } = ""; public string Email { get; set; } = ""; public string PasswordHash { get; set; } = ""; public string Phone { get; set; } = ""; public DateTime CreatedAt { get; set; } = DateTime.UtcNow; public Role? Role { get; set; } public ICollection<Event> Events { get; set; } = new List<Event>(); public ICollection<EventEnrolment> Enrolments { get; set; } = new List<EventEnrolment>(); }

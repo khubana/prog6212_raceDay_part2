@@ -1,0 +1,17 @@
+name: RaceDay API CI
+on:
+  push:
+    branches: [ main, master, part2 ]
+  pull_request:
+    branches: [ main, master, part2 ]
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet restore RaceDay.Api.csproj
+      - run: dotnet build RaceDay.Api.csproj --configuration Release --no-restore
+      - run: dotnet test RaceDay.Tests/RaceDay.Tests.csproj --configuration Release
