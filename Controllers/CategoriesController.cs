@@ -39,7 +39,7 @@ public class CategoriesController(RaceDayContext db):ControllerBase {
         c.MaxParticipants=r.MaxParticipants;c.EntryFee=r.EntryFee;
         await db.SaveChangesAsync();return Ok(c);
     }
- /// <summary>Deletes a category belonging to an event owned by the Organiser.</summary> 
+ /// <summary>Deletes a category belonging to an event owned by the Organiser..</summary> 
  [Authorize(Roles="Organiser"),HttpDelete("categories/{id:int}")] 
     public async Task<IActionResult> Delete(int id){
         var c=await db.Categories.Include(x=>x.Event).SingleOrDefaultAsync(x=>x.CategoryID==id);
