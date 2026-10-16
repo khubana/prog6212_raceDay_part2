@@ -47,7 +47,7 @@ public class EnrolmentsController(RaceDayContext db):ControllerBase {//start of 
             return Forbid();
         return Ok(new{en.EnrolmentID,en.EventID,EventName=en.Event!.EventName,en.ParticipantsID,ParticipantName=en.Participant!.FirstName+" "+en.Participant.LastName,en.CategoryID,CategoryName=en.Category!.CategoryName,en.EnrolmentDate,en.Status});
     }
- /// <summary>Cancels the authenticated Participant's own enrolment.</summary>
+ /// <summary>Cancels the authenticated Participant's own enrolment..</summary>
  [Authorize(Roles="Participant"),HttpDelete("enrolments/{id:int}")] 
     public async Task<IActionResult> Cancel(int id){
         var en=await db.EventEnrolments.FindAsync(id);
