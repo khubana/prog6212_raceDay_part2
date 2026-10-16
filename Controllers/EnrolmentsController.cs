@@ -25,7 +25,7 @@ public class EnrolmentsController(RaceDayContext db):ControllerBase {//start of 
         db.EventEnrolments.Add(en);
         await db.SaveChangesAsync();
         return Created($"/api/enrolments/{en.EnrolmentID}",new{en.EnrolmentID,en.EventID,en.ParticipantsID,en.CategoryID,en.EnrolmentDate,en.Status});}
- /// <summary>Lists enrolments for the authenticated Participant.</summary> 
+ /// <summary>Lists enrolments for the authenticated Participant..</summary> 
  [Authorize(Roles="Participant"),HttpGet("enrolments/me")] 
     public async Task<IActionResult> Mine()=>Ok(await db.EventEnrolments.Include(x=>x.Event).Include(x=>x.Category).Where(x=>x.ParticipantsID==CurrentId).Select(x=>new{x.EnrolmentID,x.EventID,EventName=x.Event!.EventName,x.CategoryID,CategoryName=x.Category!.CategoryName,x.EnrolmentDate,x.Status}).ToListAsync());
  /// <summary>Lists enrolments for an event owned by the logged-in Organiser.</summary>
