@@ -12,7 +12,7 @@ public class EventsController(RaceDayContext db):ControllerBase {//start of clas
  /// <summary>Lists public events.</summary> 
  [HttpGet] 
     public async Task<IActionResult> All()=>Ok(await db.Events.AsNoTracking().Select(e=>new{e.EventID,e.EventName,e.EventDescription,e.EventDate,e.EventLocation,e.EventStatus,e.OrganiserID}).ToListAsync());
- /// <summary>Gets one event and its categories.</summary> 
+ /// <summary>Gets one event and its categories..</summary> 
  [HttpGet("{id:int}")]
     public async Task<IActionResult> Get(int id){
         var e=await db.Events.AsNoTracking().Include(x=>x.Categories).Where(x=>x.EventID==id).Select(x=>new{x.EventID,x.EventName,x.EventDescription,x.EventDate,x.EventLocation,x.EventStatus,x.OrganiserID,Categories=x.Categories.Select(c=>new{c.CategoryID,c.CategoryName,c.MaxParticipants,c.EntryFee})}).SingleOrDefaultAsync();
