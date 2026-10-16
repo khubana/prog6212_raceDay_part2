@@ -6,7 +6,7 @@ using RaceDay.Api.Data;
 using RaceDay.Api.DTOs;
 namespace RaceDay.Api.Controllers;
 [ApiController,Route("api/users"),Authorize]
-public class UsersController(RaceDayContext db):ControllerBase {
+public class UsersController(RaceDayContext db):ControllerBase {//start of class
     int CurrentId=>int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
  /// <summary>Returns the authenticated user's own profile.</summary>
  [HttpGet("me")] public async Task<IActionResult> Me()
