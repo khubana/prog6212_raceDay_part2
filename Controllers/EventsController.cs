@@ -25,7 +25,7 @@ public class EventsController(RaceDayContext db):ControllerBase {//start of clas
         var e=Make(r,CurrentId);db.Events.Add(e);await db.SaveChangesAsync();
         return CreatedAtAction(nameof(Get),new{id=e.EventID},e);
     }
- /// <summary>Updates an event created by the logged-in Organiser.</summary>
+ /// <summary>Updates an event created by the logged-in Organiser..</summary>
  [Authorize(Roles="Organiser"),HttpPut("{id:int}")] 
     public async Task<IActionResult> Update(int id,EventRequest r){
         var e=await db.Events.FindAsync(id);
